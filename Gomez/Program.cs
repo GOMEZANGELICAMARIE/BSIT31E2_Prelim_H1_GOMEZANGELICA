@@ -2,11 +2,8 @@
 
 class Program
 {
-    static List<string> studentNames = new List<string>();
-    static List<List<int>> studentGrades = new List<List<int>>();
-    static int studentCount = 0;
-
-    static void Main()
+    List<Class> student = new List<Class>();
+    public void Start()
     {
         bool running = true;
 
@@ -52,7 +49,7 @@ class Program
         }
     }
 
-    static void AddStud()
+    void AddStud()
     {
         Console.WriteLine("\nEnter Student name: ");
         string name = Console.ReadLine();
@@ -68,44 +65,39 @@ class Program
         Console.Write("Enter grade 3: ");
         grades.Add(Convert.ToInt32(Console.ReadLine()));
 
-        studentNames.Add(name);
-        studentGrades.Add(grades);
+        student.Add(new Class(name, grades));
 
         Console.WriteLine("Student added successfully!");
 
     }
 
-    static void ViewStud()
+    void ViewStud()
     {
 
-        if (studentNames.Count == 0)
+        if (student.Count == 0)
         {
             Console.WriteLine("\nNo student records found.");
             return;
         }
 
-        Console.WriteLine("\n===== STUDENT SYSTEM =====");
-
-        for (int i = 0; i < studentNames.Count; i++)
+        for (int i = 0; i < student.Count; i++)
         {
-            double average =
-                (studentGrades[i][0] +
-                 studentGrades[i][1] +
-                 studentGrades[i][2]) / 3.0;
+            Console.WriteLine("\nName: " + student[i].GetGrades());
 
-            Console.WriteLine("\nName: " + studentNames[i]);
+            List<int> g = student[i].GetGrades();
+
             Console.WriteLine("Grades: " +
-                studentGrades[i][0] + ", " +
-                studentGrades[i][1] + ", " +
-                studentGrades[i][2]);
+                g[0] + ", " +
+                g[1] + ", " +
+                g[2]);
 
-            Console.WriteLine("Average: " + average.ToString("F2"));
+            Console.WriteLine("Average: " + student[i].getAverage().ToString("F2"));
         }
     }
 
-    static void AverageGrade()
+    void AverageGrade()
     {
-        if (studentNames.Count == 0)
+        if (student.Count == 0)
         {
             Console.WriteLine("\nNo student records available.");
             return;
@@ -113,40 +105,34 @@ class Program
 
         double totalAverage = 0;
 
-        for (int i = 0; i < studentNames.Count; i++)
+        for (int i = 0; i < student.Count; i++)
         {
-            double average =
-                (studentGrades[i][0] +
-                 studentGrades[i][1] +
-                 studentGrades[i][2]) / 3.0;
-
-            totalAverage += average;
+            totalAverage += student[i].getAverage();
         }
 
-        double overallAverage = totalAverage / studentNames.Count;
         Console.WriteLine("\n===== Class Average ===== ");
-        Console.WriteLine("Overall Average Grade: " + overallAverage.ToString("F2"));
+        Console.WriteLine("Overall Average Grade: " + (total.ToString("F2"));
     }
 
-    static void FindHigh()
+    void FindHigh()
     {
-        if (studentNames.Count == 0)
+        if (student.Count == 0)
         {
             Console.WriteLine("\nNo student records Available.");
             return;
         }
 
-        int highestGrade = studentGrades[0][0];
-        string topStudent = studentNames[0];
+        int highestGrade = student[0].Grades[0];
+        string topStudent = student[0].name;
 
-        for (int i = 0; i < studentNames.Count; i++)
+        for (int i = 0; i < student.Count; i++)
         {
             for (int j = 0; j < 3; j++)
             {
-                if (studentGrades[i][j] > highestGrade)
+                if (student[i].Grades[j] > highestGrade)
                 {
-                    highestGrade = studentGrades[i][j];
-                    topStudent = studentNames[i];
+                    highestGrade = student[i].Grades[j];
+                    topStudent = student[i].name;
                 }
             }
         }
