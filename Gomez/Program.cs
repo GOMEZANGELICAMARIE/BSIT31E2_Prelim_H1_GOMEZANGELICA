@@ -2,7 +2,7 @@
 
 class Program
 {
-    private List<Class> student = new List<>(Class);
+    private List<Class> student = new List<Class>();
 
         static void Main()
         {
@@ -112,7 +112,7 @@ class Program
         double overall = totalAverage / student.Count;
 
         Console.WriteLine("\n===== Class Average ===== ");
-        Console.WriteLine("Overall Average Grade: " + (overall.ToString("F2"));
+        Console.WriteLine("Overall Average Grade: " + overall.ToString("F2"));
     }
 
     void FindHigh()
@@ -123,7 +123,7 @@ class Program
             return;
         }
 
-        student topStudent = student[0];
+        Class topStudent = student[0];
         int highest = student[0].GetGrades()[0];
 
         for (int i = 0; i < student.Count; i++)
@@ -134,15 +134,15 @@ class Program
             {
                 if (g[j] > highest)
                 {
-                    highest = g[j].Grades[j];
+                    highest = g[j];
                     topStudent = student[i];
                 }
             }
         }
 
         Console.WriteLine("\n===== HIGHEST GRADE =====");
-        Console.WriteLine("\nTop Student: " + topStudent);
-        Console.WriteLine("\nHighest Grade: " + highestGrade);
+        Console.WriteLine("\nTop Student: " + topStudent.GetName());
+        Console.WriteLine("\nHighest Grade: " + highest);
 
     }
 }
