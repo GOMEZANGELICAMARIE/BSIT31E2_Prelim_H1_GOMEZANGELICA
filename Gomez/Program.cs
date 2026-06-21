@@ -2,52 +2,51 @@
 
 class Program
 {
-    List<Class> student = new List<Class>();
-    public void Start()
-    {
-        bool running = true;
+    private List<Class> student = new List<>(Class);
 
-        while (running)
+        static void Main()
         {
-            Console.WriteLine("\n===== STUDENT SYSTEM =====");
-            Console.WriteLine("1. Add Student");
-            Console.WriteLine("2. View All Student");
-            Console.WriteLine("3. Compute Class Average");
-            Console.WriteLine("4. Find Highest Grade");
-            Console.WriteLine("5. Exit");
-            Console.WriteLine("==========================");
-            Console.Write("Choose option: ");
-
-            string choice = Console.ReadLine();
-
-            if (choice == "1")
-            {
-                AddStud();
-            }
-            else if (choice == "2")
-            {
-                ViewStud();
-            }
-            else if (choice == "3")
-            {
-                AverageGrade();
-            }
-            else if (choice == "4")
-            {
-                FindHigh();
-            }
-            else if (choice == "5")
-            {
-                Console.WriteLine("\nExiting Program...");
-                Console.WriteLine("Goodbye!");
-                running = false;
-            }
-            else
-            {
-                Console.WriteLine("Invalid option. ");
-            }
+            Program p = new Program();
+            p.Start();
         }
-    }
+
+       void Start()
+       {
+            bool running = true;
+
+            while (running)
+            {
+                Console.WriteLine("\n===== STUDENT SYSTEM =====");
+                Console.WriteLine("1. Add Student");
+                Console.WriteLine("2. View All Student");
+                Console.WriteLine("3. Compute Class Average");
+                Console.WriteLine("4. Find Highest Grade");
+                Console.WriteLine("5. Exit");
+                Console.WriteLine("==========================");
+                Console.Write("Choose option: ");
+
+                string choice = Console.ReadLine();
+
+                if (choice == "1")
+                    AddStud();
+                else if (choice == "2")
+                    ViewStud();
+                else if (choice == "3")
+                    AverageGrade();
+                else if (choice == "4")
+                    FindHigh();
+                else if (choice == "5")
+                {
+                    Console.WriteLine("\nExiting Program...");
+                    Console.WriteLine("Goodbye!");
+                    running = false;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid option. ");
+                }
+            }
+       }
 
     void AddStud()
     {
@@ -82,7 +81,7 @@ class Program
 
         for (int i = 0; i < student.Count; i++)
         {
-            Console.WriteLine("\nName: " + student[i].GetGrades());
+            Console.WriteLine("\nName: " + student[i].GetName());
 
             List<int> g = student[i].GetGrades();
 
@@ -110,8 +109,10 @@ class Program
             totalAverage += student[i].getAverage();
         }
 
+        double overall = totalAverage / student.Count;
+
         Console.WriteLine("\n===== Class Average ===== ");
-        Console.WriteLine("Overall Average Grade: " + (total.ToString("F2"));
+        Console.WriteLine("Overall Average Grade: " + (overall.ToString("F2"));
     }
 
     void FindHigh()
@@ -122,17 +123,19 @@ class Program
             return;
         }
 
-        int highestGrade = student[0].Grades[0];
-        string topStudent = student[0].name;
+        student topStudent = student[0];
+        int highest = student[0].GetGrades()[0];
 
         for (int i = 0; i < student.Count; i++)
         {
-            for (int j = 0; j < 3; j++)
+            List<int> g = student[i].GetGrades();
+
+            for (int j = 0; j < g.Count; j++)
             {
-                if (student[i].Grades[j] > highestGrade)
+                if (g[j] > highest)
                 {
-                    highestGrade = student[i].Grades[j];
-                    topStudent = student[i].name;
+                    highest = g[j].Grades[j];
+                    topStudent = student[i];
                 }
             }
         }

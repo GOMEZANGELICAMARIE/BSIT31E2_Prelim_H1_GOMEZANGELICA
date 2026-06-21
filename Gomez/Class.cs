@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Class
+class Class
 {
     private string name;
     private List<int> Grades;
@@ -12,7 +12,7 @@ public class Class
     }
 
     public string GetName()
-    { 
+    {
         return name;
     }
 
